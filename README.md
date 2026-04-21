@@ -1,8 +1,7 @@
 # Active Directory Home Lab
 
 ## 📌 Overview
-This project simulates a real-world IT help desk environment using Active Directory.  
-It includes domain setup, user and group management, shared folder permissions, and common troubleshooting scenarios.
+> Hands-on Active Directory lab simulating real-world help desk tasks including user management, access control, and troubleshooting.
 
 ---
 
@@ -19,9 +18,12 @@ It includes domain setup, user and group management, shared folder permissions, 
 - Domain Controller IP: 192.168.10.10  
 - Client IP: 192.168.10.20  
 - DNS configured to point to Domain Controller  
-- Internal network used for communication  
+- Internal network configured for isolated lab communication
 
 ![Network Setup](screenshots/03-network-internal.png)
+
+#### 🖥️ Network Flow
+Client machine communicates with the Domain Controller for authentication and DNS resolution.
 
 ---
 
@@ -30,6 +32,8 @@ It includes domain setup, user and group management, shared folder permissions, 
 - Installed Active Directory Domain Services (AD DS)  
 - Promoted server to Domain Controller  
 - Created domain: `homelab.local`  
+
+This setup establishes centralized authentication and management, similar to a real enterprise environment.
 
 ![AD Installation](screenshots/05-ad-install.png)  
 ![Domain Setup](screenshots/06-domain-creation.png)
@@ -50,7 +54,9 @@ It includes domain setup, user and group management, shared folder permissions, 
   - HR-Users  
   - Sales-Users  
 
-- Assigned users to appropriate groups  
+- Assigned users to groups to simulate department-based access control  
+
+This follows best practices by managing permissions through groups instead of individual users.
 
 ![OUs](screenshots/07-organizational-units.png)  
 ![Users](screenshots/08-users-created.png)  
@@ -60,8 +66,10 @@ It includes domain setup, user and group management, shared folder permissions, 
 
 ## 🖥️ Domain Join
 
-- Joined Windows 10 client to domain  
-- Verified login using domain credentials  
+- Joined Windows 10 client to `homelab.local` domain  
+- Verified domain authentication by logging in with multiple user accounts
+
+This ensures centralized login and identity management.
 
 ![Domain Join](screenshots/11-domain-join.png)  
 ![Domain Login](screenshots/12-domain-login.png)
@@ -71,48 +79,69 @@ It includes domain setup, user and group management, shared folder permissions, 
 ## 📁 Shared Folder & Permissions
 
 - Created shared folder: `C:\Departments`  
-- Configured subfolders for HR and Sales  
-- Assigned permissions using security groups  
+- Created subfolders:
+  - HR  
+  - Sales  
+
+- Assigned NTFS permissions using security groups:
+  - HR-Users → HR folder  
+  - Sales-Users → Sales folder  
+
+- Configured access using least privilege principles
+- Tested access from client machine to validate correct permission assignment  
+
+This simulates real-world file server access control.  
 
 ![Shared Folder](screenshots/13-shared-folder.png)  
 ![Permissions](screenshots/14-permissions.png)  
 ![Access Test](screenshots/15-folder-access.png)
+
 
 ---
 
 ## 🛠️ Troubleshooting Scenarios
 
 ### 🔹 DNS Misconfiguration (Login Issue)
-- Changed client DNS to incorrect server  
-- Observed login behavior (cached credentials vs new user)  
-- Restored correct DNS to resolve issue  
+- **Issue:** Domain login unreliable or unavailable  
+- **Cause:** Client DNS pointed to external server instead of domain controller  
+- **Observation:** Previously logged-in users could still authenticate due to cached credentials  
+- **Resolution:** Updated DNS to Domain Controller (192.168.10.10), restoring authentication  
 
 ---
 
 ### 🔹 Access Denied (Permissions Issue)
-- Removed group permissions  
-- Observed continued access due to inherited permissions and default group membership  
-- Disabled inheritance and reapplied correct permissions  
+- **Issue:** User retained access after group removal  
+- **Cause:** Inherited permissions and default "Domain Users" group access  
+- **Resolution:** Disabled inheritance and reapplied permissions using security groups only  
 
 ---
 
 ### 🔹 Account Lockout
-- Triggered lockout with multiple failed logins  
-- Unlocked account using Active Directory  
+- **Issue:** User unable to log in after multiple failed attempts  
+- **Cause:** Account lockout policy triggered  
+- **Resolution:** Unlocked account in Active Directory Users and Computers  
 
 ---
 
+***These scenarios were designed to replicate common help desk tickets and reinforce practical troubleshooting skills.***
+
+---
 ## 🧠 Key Takeaways
 
-- Gained hands-on experience with Active Directory environments  
-- Learned importance of DNS in domain authentication  
-- Practiced role-based access control using security groups  
-- Troubleshot real-world issues including permission conflicts and account lockouts  
+- Built and configured a functional Active Directory environment  
+- Understood the role of DNS in domain authentication  
+- Implemented role-based access control using security groups  
+- Troubleshot real-world issues including:
+  - Authentication failures  
+  - Permission conflicts  
+  - Account lockouts
+- Developed practical experience aligned with entry-level IT help desk responsibilities
 
 ---
 
 ## 🔗 Future Improvements
 
 - Implement Group Policy Objects (GPOs)  
-- Automate user creation with PowerShell  
+- Automate user creation using PowerShell  
 - Simulate ticket-based help desk scenarios  
+- Expand lab with additional clients and services  
