@@ -1,7 +1,7 @@
 # Active Directory Home Lab
 
 ## 📌 Overview
-> Hands-on Active Directory lab simulating real-world help desk tasks including user management, access control, and troubleshooting.
+> Windows Server 2019 Active Directory lab built in VirtualBox to practice domain administration, user management, authentication troubleshooting, and NTFS access control.
 
 ---
 
@@ -22,7 +22,7 @@
 
 ![Network Setup](screenshots/03-network-internal.png)
 
-#### 🖥️ Network Flow
+#### Network Flow
 Client machine communicates with the Domain Controller for authentication and DNS resolution.
 
 ---
@@ -33,7 +33,7 @@ Client machine communicates with the Domain Controller for authentication and DN
 - Promoted server to Domain Controller  
 - Created domain: `homelab.local`  
 
-This setup establishes centralized authentication and management, similar to a real enterprise environment.
+Configured the server as a Domain Controller to centralize authentication, DNS, and user management for domain-connected clients.
 
 ![AD Installation](screenshots/05-ad-install.png)  
 ![Domain Setup](screenshots/06-domain-creation.png)
@@ -54,9 +54,9 @@ This setup establishes centralized authentication and management, similar to a r
   - HR-Users  
   - Sales-Users  
 
-- Assigned users to groups to simulate department-based access control  
+- Assigned users to department-based security groups  
 
-This follows best practices by managing permissions through groups instead of individual users.
+Permissions were assigned through security groups rather than directly to user accounts.
 
 ![OUs](screenshots/07-organizational-units.png)  
 ![Users](screenshots/08-users-created.png)  
@@ -68,8 +68,6 @@ This follows best practices by managing permissions through groups instead of in
 
 - Joined Windows 10 client to `homelab.local` domain  
 - Verified domain authentication by logging in with multiple user accounts
-
-This ensures centralized login and identity management.
 
 ![Domain Join](screenshots/11-domain-join.png)  
 ![Domain Login](screenshots/12-domain-login.png)
@@ -90,7 +88,7 @@ This ensures centralized login and identity management.
 - Configured access using least privilege principles
 - Tested access from client machine to validate correct permission assignment  
 
-This simulates real-world file server access control.  
+Validated NTFS folder access from the Windows 10 client using department-based security groups. 
 
 ![Shared Folder](screenshots/13-shared-folder.png)  
 ![Permissions](screenshots/14-permissions.png)  
@@ -123,7 +121,7 @@ This simulates real-world file server access control.
 
 ---
 
-***These scenarios were designed to replicate common help desk tickets and reinforce practical troubleshooting skills.***
+***These troubleshooting scenarios were used to test authentication, permissions, and client connectivity inside the lab environment.***
 
 ---
 ## 🧠 Key Takeaways
@@ -135,7 +133,7 @@ This simulates real-world file server access control.
   - Authentication failures  
   - Permission conflicts  
   - Account lockouts
-- Developed practical experience aligned with entry-level IT help desk responsibilities
+- Practiced troubleshooting authentication, permissions, and client connectivity issues in a domain environment
 
 ---
 
